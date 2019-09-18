@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <!--关于支付宝支付这块的配置信息-->
+
+    <!--创建AlipayConfig类的对象，并为这个对象的各个属性赋值-->
+    <!-- 支付宝手机网站支付 -->
+    <bean id="alipayConfig" class="cn.itrip.trade.config.AlipayConfig">
+        <property name="appID" value="2018032102422329"/>
+        <!--商户应用的私钥-->
+        <property name="rsaPrivateKey" value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCf9O/PRBQEFs9Lmew5kjJhVl2xrUOQVcq3L5PQ5GCz+aInGY3U9b1NzazTYZFhcNGAREWEXuQr7gG0XMSBqOwTv0eHv0Xsa7dfN3ksigUDA4DKqm497kA6bjsI4y+ju0cD8BtfleX/P7FXek1QcW8rtkCTx8q0QezXtao2bT3FVF1vDgyuAvpYYbHdOiZU8qlMy8ThX1B2OXSRPH/3LGPmaxvW8JufAhG1dGZgVnsx5UkLc4+i2S9Q46pfLc1R1uHnIfHf2eBIv0yMuqtmabdvRbJKydffX4YF6QEaBcz60UFJnwgdt6/wu2gXXRyQXFjzf6p/FOzvEFwpGSMU8QZhAgMBAAECggEAYvJFFdVq/EyP1phUhBhnica/FpWzYalwSHjp2yIqn6ogIEeycLXCcEp2Shvkrn33Wnzg880vH+2OqF9qPzqbLmv4d4ReYK0RNZk/H8oQ55hXJwbeQvkKShq98fV3FrVWbJ0ukaZMK+Tectp40PYaatPGhqPkRDUzqQv7SsewmktjeB+LNA4n2gIDv8YTTEWtHJ6bMFJdGu9CyTPJvrOKWfIojTTX9pX3c/H7RaNHh6psLDUubcrEUMpMRC905VjkOdkIRADUOmTjDsZkML4uE5jNbdGEhKF8P6YuafmUsFfUxXnDGCAlz8pAeRFWQnWsmMa6qzupHZnKfK74KRMJMQKBgQDxL9a8qex6lU3krK8fC68/dECd++Cz4Mzfpzv4tB0Yg8fxgrmMoSIyi4L92SY4pbOHIoLxB+rJU+wfRVxlLOEyjPfZpLq//aGjHsqfAh7zvRrzLDslFvscfHf56S0lVqk1CbYgI2b2+5uozuoVL0O1GR8f9w5l4iI0t6sz6r1kAwKBgQCpx+yM15kjpDL1xQEE5aK7cXaeGbhrphfAR+YWvh0N0dl7UDcgf/I43yrTtFXjdEMCqEsoC8FzBkvZ6yQfi3/+S2e9EI2iANjsRFOzoxih/T5qtmVcIX5ME+ViH0qU1h2O7nVxk7FZ6IT1V3EWj6yc/gwNo3ErOd96YMZI72DoywKBgCWRLgF09kChwOA9hYlwaHuZv/bbpMRf34l2owC6DU4kOKCFnCEreAgnct/XUvy/0pbZ6Uth0FBLohu80gdwViNpkbF01yHQf7zIrwbVbbzJV8lIum2shrCJMqbaiw2l0fVQ7e1TllYiGrzQfeWO1xz+LLrt4HA+KNXNRf1wMs/BAoGBAJ6G/1fO473EzpRu+3GgHV+aJSCgcXOKZXjzaWLo5uYFgGVE1ARzky8JKcr9AolcAEnV7D8bIukNAvwaM+OEdOFzdQyzDRwsYF/TuLft3M08UfCAGIp695t/pFoHT7NDbdwMyfpf5mRF2QfgOsbPJmR8TbLaXov3ALUa8WoeocUbAoGAZnWC8g2+YKSsRxhH9L9xeUSVhy69aTmK2MZYDuUbPbzmaeeM44yLfPtBTPnF6hBsBOkvU0QASGUJzpnNhP18exORBx0aUpOrCfM3rIhTugQ1CQJv125cbY6nz/X7ylWvXp42+DY1g858SxIkjl0+bSP4hgWIpPfCCJOwZBxsWmg="/>
+        <!--这里是设置异步通知页面路径-->
+        <property name="notifyUrl" value="http://itrip.test.com/itriptrade/api/notify"/>
+        <!--这里是设置同步通知页面路径-->
+        <property name="returnUrl" value="http://itrip.test.com/itriptrade/api/return"/>
+        <!--url为支付宝网关， 注如果是使用沙箱环境，url地址为：https://openapi.alipaydev.com/gateway.do-->
+        <property name="url" value="https://openapi.alipay.com/gateway.do"/>
+        <property name="charset" value="UTF-8"/>
+        <property name="format" value="json"/>
+        <!--alipayPublicKey  支付宝公钥，注：不是商户应用的公钥。-->
+        <property name="alipayPublicKey" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkDHcnVQaqEDyIgj0/e+Lx568++cG8xygoZYzz9LbE2wxO0q9NiUH1A+3AeA45RW4KLOqfYvnzOa+oxzlbMOp5sDd42Qtvocwu/5CiHAbQpZllyJZrZvU/fQNZGyjkEVC4NQKDI4vUrEdAL17ngsosRRo9TaDTpnpfIsVSc/hGL2DjmH6IwoJryqevDhsDsPHyMBtxJiYvIR/Om05UlThMn5m5LQVngjM4P9hNhL+nUtTqrfsMIbBfaLkdXs8wpER0Pm1S/H3ruOsuIlggJqX5LI0ebXEm6l2ytK6EAC7IP6gQG29xj0eFoYQVwyJQPOGb1sYAU/aKzlOssixYUln+wIDAQAB"/>
+        <property name="logPath" value="/logs"/>
+        <property name="signType" value="RSA2"/>
+        <!--支付成功的跳转路径-->
+        <property name="paymentSuccessUrl" value="http://itrip.test.com"/>
+        <!--支付失败的跳转路径-->
+        <property name="paymentFailureUrl" value="http://itrip.test.com/itriptrade/api/paymentFail"/>
+    </bean>
+</beans>
